@@ -35,12 +35,12 @@ class SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Colors.white,
-        elevation: 0,
         title: const Text('Configurações',
-            style: TextStyle(color: Colors.blueAccent)),
+            style: TextStyle(color: Colors.black54, fontSize: 26)),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.blueAccent),
+          icon: const Icon(Icons.arrow_back_outlined, color: Colors.black54),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -51,6 +51,7 @@ class SettingsPageState extends State<SettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 10),
             const Text(
               'Meta Diária de Água (ml)',
               style: TextStyle(fontSize: 18, color: Colors.blueAccent),
@@ -59,31 +60,50 @@ class SettingsPageState extends State<SettingsPage> {
               controller: _goalController,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             const Text(
               'Valor do Botão (ml)',
               style: TextStyle(fontSize: 18, color: Colors.blueAccent),
             ),
             TextField(
               controller: _buttonValueController,
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _saveSettings,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.blueAccent,
-                backgroundColor: Colors.white,
-                side: const BorderSide(color: Colors.blueAccent),
+            const SizedBox(height: 50),
+            SizedBox(
+              height: 50,
+              child: ElevatedButton(
+                onPressed: _saveSettings,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                  backgroundColor: Colors.white,
+                  side: const BorderSide(color: Colors.black54),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text('CONTINUAR',
+                    style: TextStyle(color: Colors.black54, fontSize: 16)),
               ),
-              child:
-                  const Text('OK', style: TextStyle(color: Colors.blueAccent)),
             ),
           ],
         ),

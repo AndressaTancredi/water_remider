@@ -55,6 +55,19 @@ class WaterHomePageState extends State<WaterHomePage>
     });
   }
 
+  void _reset() {
+    setState(() {
+      _waterIntake = 0;
+      _isGoalReached = false;
+      _controller.reset();
+      _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
+        ..addListener(() {
+          setState(() {});
+        });
+      _controller.forward();
+    });
+  }
+
   void _openSettings() async {
     final result = await Navigator.push(
       context,
@@ -146,7 +159,8 @@ class WaterHomePageState extends State<WaterHomePage>
               width: 80.0,
               height: 80.0,
               child: FloatingActionButton(
-                onPressed: () => _addWater(_buttonValue),
+                onPressed:
+                    _isGoalReached ? _reset : () => _addWater(_buttonValue),
                 backgroundColor: Colors.white,
                 shape: const CircleBorder(
                     side: BorderSide(color: Colors.blueAccent, width: 2)),
@@ -158,8 +172,12 @@ class WaterHomePageState extends State<WaterHomePage>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.add, color: Colors.blueAccent, size: 30),
-                      Text('${_buttonValue.toInt()} ml',
+                      Icon(_isGoalReached ? Icons.refresh : Icons.add,
+                          color: Colors.blueAccent, size: 30),
+                      Text(
+                          _isGoalReached
+                              ? 'Reiniciar'
+                              : '${_buttonValue.toInt()} ml',
                           style: const TextStyle(
                               color: Colors.blueAccent, fontSize: 14)),
                     ],
