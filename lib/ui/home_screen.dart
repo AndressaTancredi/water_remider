@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:water_app/ui/settings_page.dart';
 import 'package:water_app/ui/water_painter_widget.dart';
 
+/// TODO: arrumar botao continuar da settings page para nao resetar quando o intake de agua estiver em curso
+
 class WaterHomePage extends StatefulWidget {
   const WaterHomePage({super.key});
 
@@ -108,6 +110,7 @@ class WaterHomePageState extends State<WaterHomePage>
           Column(
             children: [
               AppBar(
+                toolbarHeight: 80,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 actions: [
@@ -121,33 +124,6 @@ class WaterHomePageState extends State<WaterHomePage>
                   ),
                 ],
               ),
-              Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Ingestão Diária de Água',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color:
-                              _isGoalReached ? Colors.white : Colors.blueAccent,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        '${_waterIntake.toInt()} / ${_waterGoal.toInt()} ml',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color:
-                              _isGoalReached ? Colors.white : Colors.blueAccent,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
           AnimatedBuilder(
@@ -155,7 +131,7 @@ class WaterHomePageState extends State<WaterHomePage>
             builder: (context, child) {
               return Positioned(
                 left: 20,
-                bottom: 50 +
+                bottom: 70 +
                     (_animation.value *
                         (MediaQuery.of(context).size.height - 100)),
                 child: Text(
@@ -180,7 +156,7 @@ class WaterHomePageState extends State<WaterHomePage>
                     _isGoalReached ? _reset : () => _addWater(_buttonValue),
                 backgroundColor: Colors.white,
                 shape: const CircleBorder(
-                    side: BorderSide(color: Colors.blueAccent, width: 2)),
+                    side: BorderSide(color: Colors.white, width: 2)),
                 elevation: 6.0,
                 highlightElevation: 12.0,
                 child: Padding(
