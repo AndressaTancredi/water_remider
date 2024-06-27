@@ -101,7 +101,9 @@ class WaterHomePageState extends State<WaterHomePage>
                 elevation: 0,
                 actions: [
                   IconButton(
-                    icon: const Icon(Icons.menu, color: Colors.white),
+                    icon: Icon(Icons.menu,
+                        color:
+                            _isGoalReached ? Colors.white : Colors.blueAccent),
                     onPressed: _openSettings,
                   ),
                 ],
@@ -139,8 +141,8 @@ class WaterHomePageState extends State<WaterHomePage>
             bottom: 50,
             right: 50,
             child: SizedBox(
-              width: 80.0, // Largura personalizada
-              height: 80.0, // Altura personalizada
+              width: 80.0,
+              height: 80.0,
               child: FloatingActionButton(
                 onPressed: () => _addWater(_buttonValue),
                 backgroundColor: Colors.white,
