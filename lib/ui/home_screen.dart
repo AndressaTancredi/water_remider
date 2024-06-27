@@ -83,19 +83,16 @@ class WaterHomePageState extends State<WaterHomePage>
       body: Stack(
         children: [
           Positioned.fill(
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return CustomPaint(
-                  painter:
-                      _isGoalReached ? null : WaterPainter(_animation.value),
-                  child: Container(
-                    color:
-                        _isGoalReached ? Colors.blueAccent : Colors.transparent,
+            child: _isGoalReached
+                ? Container(color: Colors.blue)
+                : AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return CustomPaint(
+                        painter: WaterPainter(_animation.value),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
           Column(
             children: [
@@ -141,24 +138,28 @@ class WaterHomePageState extends State<WaterHomePage>
           Positioned(
             bottom: 50,
             right: 50,
-            child: FloatingActionButton(
-              onPressed: () => _addWater(_buttonValue),
-              backgroundColor: Colors.white,
-              shape: const CircleBorder(
-                  side: BorderSide(color: Colors.blueAccent, width: 2)),
-              elevation: 6.0,
-              highlightElevation: 12.0,
-              splashColor: Colors.blue,
-              child: Padding(
-                padding: const EdgeInsets.all(0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.add, color: Colors.blueAccent, size: 30),
-                    Text('${_buttonValue.toInt()} ml',
-                        style: const TextStyle(
-                            color: Colors.blueAccent, fontSize: 14)),
-                  ],
+            child: SizedBox(
+              width: 80.0, // Largura personalizada
+              height: 80.0, // Altura personalizada
+              child: FloatingActionButton(
+                onPressed: () => _addWater(_buttonValue),
+                backgroundColor: Colors.white,
+                shape: const CircleBorder(
+                    side: BorderSide(color: Colors.blueAccent, width: 2)),
+                elevation: 6.0,
+                highlightElevation: 12.0,
+                splashColor: Colors.blue,
+                child: Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.add, color: Colors.blueAccent, size: 30),
+                      Text('${_buttonValue.toInt()} ml',
+                          style: const TextStyle(
+                              color: Colors.blueAccent, fontSize: 14)),
+                    ],
+                  ),
                 ),
               ),
             ),
