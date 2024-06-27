@@ -17,6 +17,7 @@ class WaterHomePageState extends State<WaterHomePage>
   late AnimationController _controller;
   late Animation<double> _animation;
   double _previousProgress = 0.0;
+  bool _isGoalReached = false;
 
   @override
   void initState() {
@@ -40,6 +41,9 @@ class WaterHomePageState extends State<WaterHomePage>
     setState(() {
       _previousProgress = _waterIntake / _waterGoal;
       _waterIntake += amount;
+      if (_waterIntake >= _waterGoal) {
+        _isGoalReached = true;
+      }
       _controller.reset();
       _animation = Tween<double>(
               begin: _previousProgress, end: _waterIntake / _waterGoal)
@@ -63,6 +67,7 @@ class WaterHomePageState extends State<WaterHomePage>
         _waterGoal = result['goal'];
         _buttonValue = result['buttonValue'];
         _waterIntake = 0;
+        _isGoalReached = false;
         _controller.reset();
         _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
           ..addListener(() {
@@ -75,16 +80,6 @@ class WaterHomePageState extends State<WaterHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.blueAccent),
-            onPressed: _openSettings,
-          ),
-        ],
-      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -92,34 +87,56 @@ class WaterHomePageState extends State<WaterHomePage>
               animation: _controller,
               builder: (context, child) {
                 return CustomPaint(
-                  painter: WaterPainter(_animation.value),
+                  painter:
+                      _isGoalReached ? null : WaterPainter(_animation.value),
+                  child: Container(
+                    color:
+                        _isGoalReached ? Colors.blueAccent : Colors.transparent,
+                  ),
                 );
               },
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: kToolbarHeight),
-                const Text(
-                  'Ingestão Diária de Água',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.blueAccent,
+          Column(
+            children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.menu, color: Colors.white),
+                    onPressed: _openSettings,
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Ingestão Diária de Água',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color:
+                              _isGoalReached ? Colors.white : Colors.blueAccent,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        '${_waterIntake.toInt()} / ${_waterGoal.toInt()} ml',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color:
+                              _isGoalReached ? Colors.white : Colors.blueAccent,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  '${_waterIntake.toInt()} / ${_waterGoal.toInt()} ml',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+            ],
           ),
           Positioned(
             bottom: 50,
