@@ -96,16 +96,14 @@ class WaterHomePageState extends State<WaterHomePage>
       body: Stack(
         children: [
           Positioned.fill(
-            child: _isGoalReached
-                ? Container(color: Colors.blue.shade300)
-                : AnimatedBuilder(
-                    animation: _controller,
-                    builder: (context, child) {
-                      return CustomPaint(
-                        painter: WaterPainter(_animation.value),
-                      );
-                    },
-                  ),
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return CustomPaint(
+                  painter: WaterPainter(_animation.value),
+                );
+              },
+            ),
           ),
           Column(
             children: [
@@ -152,12 +150,30 @@ class WaterHomePageState extends State<WaterHomePage>
               ),
             ],
           ),
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Positioned(
+                left: 20,
+                bottom: 50 +
+                    (_animation.value *
+                        (MediaQuery.of(context).size.height - 100)),
+                child: Text(
+                  '${_waterIntake.toInt()} ml / ${_waterGoal.toInt()} ml',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: _isGoalReached ? Colors.white : Colors.blueAccent,
+                  ),
+                ),
+              );
+            },
+          ),
           Positioned(
-            bottom: 50,
-            right: 50,
+            bottom: 45,
+            right: 35,
             child: SizedBox(
-              width: 80.0,
-              height: 80.0,
+              width: 120.0,
+              height: 120.0,
               child: FloatingActionButton(
                 splashColor: Colors.transparent,
                 onPressed:
@@ -172,14 +188,18 @@ class WaterHomePageState extends State<WaterHomePage>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(_isGoalReached ? Icons.refresh : Icons.add,
-                          color: Colors.blueAccent, size: 30),
+                      Icon(
+                        _isGoalReached ? Icons.refresh_outlined : Icons.add,
+                        color: Colors.blueAccent,
+                        size: 35,
+                      ),
+                      const SizedBox(height: 6),
                       Text(
                           _isGoalReached
                               ? 'Reiniciar'
                               : '${_buttonValue.toInt()} ml',
                           style: const TextStyle(
-                              color: Colors.blueAccent, fontSize: 14)),
+                              color: Colors.blueAccent, fontSize: 18)),
                     ],
                   ),
                 ),
