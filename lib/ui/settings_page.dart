@@ -54,7 +54,7 @@ class SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 10),
             const Text(
               'Meta Diária de Água (ml)',
-              style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+              style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
             TextField(
               controller: _goalController,
@@ -72,7 +72,7 @@ class SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 40),
             const Text(
               'Valor do Botão (ml)',
-              style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+              style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
             TextField(
               controller: _buttonValueController,

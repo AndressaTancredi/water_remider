@@ -97,7 +97,7 @@ class WaterHomePageState extends State<WaterHomePage>
         children: [
           Positioned.fill(
             child: _isGoalReached
-                ? Container(color: Colors.blue)
+                ? Container(color: Colors.blue.shade300)
                 : AnimatedBuilder(
                     animation: _controller,
                     builder: (context, child) {
@@ -159,6 +159,7 @@ class WaterHomePageState extends State<WaterHomePage>
               width: 80.0,
               height: 80.0,
               child: FloatingActionButton(
+                splashColor: Colors.transparent,
                 onPressed:
                     _isGoalReached ? _reset : () => _addWater(_buttonValue),
                 backgroundColor: Colors.white,
@@ -166,7 +167,6 @@ class WaterHomePageState extends State<WaterHomePage>
                     side: BorderSide(color: Colors.blueAccent, width: 2)),
                 elevation: 6.0,
                 highlightElevation: 12.0,
-                splashColor: Colors.blue,
                 child: Padding(
                   padding: const EdgeInsets.all(0),
                   child: Column(
