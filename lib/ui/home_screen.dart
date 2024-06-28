@@ -117,9 +117,9 @@ class WaterHomePageState extends State<WaterHomePage>
                 elevation: 0,
                 actions: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.menu_sharp,
-                      color: _isGoalReached ? Colors.white : Colors.blueAccent,
+                      color: Colors.blueAccent,
                       size: 40,
                     ),
                     onPressed: _openSettings,

@@ -1,0 +1,1 @@
+ /Users/andressa/APPs/water_app/.dart_tool/flutter_build/7ac4bee72295191e56a2920cbaabe7a8/native_assets.yaml: 

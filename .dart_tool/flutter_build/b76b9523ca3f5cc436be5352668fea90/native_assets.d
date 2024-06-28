@@ -1,0 +1,1 @@
+ /Users/andressa/APPs/WaterRemider/.dart_tool/flutter_build/b76b9523ca3f5cc436be5352668fea90/native_assets.yaml: 
