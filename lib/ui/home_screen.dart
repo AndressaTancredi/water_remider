@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:water_app/ui/settings_page.dart';
 import 'package:water_app/ui/water_painter_widget.dart';
 
-/// TODO: arrumar botao continuar da settings page para nao resetar quando o intake de agua estiver em curso
-
 class WaterHomePage extends StatefulWidget {
   const WaterHomePage({super.key});
 
@@ -78,17 +76,21 @@ class WaterHomePageState extends State<WaterHomePage>
               SettingsPage(goal: _waterGoal, buttonValue: _buttonValue)),
     );
     if (result != null) {
-      setState(() {
-        _waterGoal = result['goal'];
-        _buttonValue = result['buttonValue'];
-        _waterIntake = 0;
-        _isGoalReached = false;
-        _controller.reset();
-        _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
-          ..addListener(() {
-            setState(() {});
-          });
-      });
+      if (result['goal'] != _waterGoal ||
+          result['buttonValue'] != _buttonValue) {
+        setState(() {
+          _waterGoal = result['goal'];
+          _buttonValue = result['buttonValue'];
+          _waterIntake = 0;
+          _isGoalReached = false;
+          _controller.reset();
+          _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
+            ..addListener(() {
+              setState(() {});
+            });
+          _controller.forward();
+        });
+      }
     }
   }
 
