@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_app/ui/widgets/app_version_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   final double goal;
@@ -105,6 +106,7 @@ class SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(color: Colors.black54, fontSize: 16)),
               ),
             ),
+            const AppVersionWidget(),
           ],
         ),
       ),
