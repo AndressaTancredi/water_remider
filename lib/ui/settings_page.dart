@@ -106,6 +106,7 @@ class SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(color: Colors.black54, fontSize: 16)),
               ),
             ),
+            const Spacer(),
             const AppVersionWidget(),
           ],
         ),

@@ -15,20 +15,26 @@ class AppVersionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("VERSÃO DO APLICATIVO", style: textVersionStyle),
-        FutureBuilder<String>(
-            future: sl<AppMetadata>().versionNumber(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Text('APP v${snapshot.data}', style: textVersionStyle);
-              } else {
-                return Container();
-              }
-            })
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("VERSÃO DO APLICATIVO", style: textVersionStyle),
+          FutureBuilder<String>(
+              future: sl<AppMetadata>().versionNumber(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Text(
+                    'APP v${snapshot.data}',
+                    style: textVersionStyle,
+                  );
+                } else {
+                  return Container();
+                }
+              })
+        ],
+      ),
     );
   }
 }
