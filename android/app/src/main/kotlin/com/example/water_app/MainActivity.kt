@@ -1,4 +1,4 @@
-package com.example.water_app
+package com.hydrate_me
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -21,6 +21,7 @@ class _WaterReminderAppState extends State<WaterReminderApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Lembrete de Água',
       theme: ThemeData(
         primarySwatch: Colors.blue,
