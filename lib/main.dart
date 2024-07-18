@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:water_app/utils/injection_container.dart' as get_it;
-import 'package:water_app/utils/router.dart';
+import 'package:hydrate_me/utils/injection_container.dart' as get_it;
+import 'package:hydrate_me/utils/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:water_app/ui/widgets/app_version_widget.dart';
+import 'package:hydrate_me/ui/widgets/app_version_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   final double goal;

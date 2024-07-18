@@ -2,7 +2,7 @@
     package="com.hydrate_me">
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
-        android:label="water_app"
+        android:label="HydrateMe"
         android:name="${applicationName}"
         android:icon="@mipmap/water_icon">
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver" android:exported="true">

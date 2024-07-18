@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:water_app/utils/app_metadata.dart';
-import 'package:water_app/utils/injection_container.dart';
+import 'package:hydrate_me/utils/app_metadata.dart';
+import 'package:hydrate_me/utils/injection_container.dart';
 
 class AppVersionWidget extends StatelessWidget {
   const AppVersionWidget({super.key});

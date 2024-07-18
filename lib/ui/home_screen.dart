@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:water_app/ui/settings_page.dart';
-import 'package:water_app/ui/water_painter_widget.dart';
+import 'package:hydrate_me/ui/settings_page.dart';
+import 'package:hydrate_me/ui/water_painter_widget.dart';
 
 class WaterHomePage extends StatefulWidget {
   const WaterHomePage({super.key});

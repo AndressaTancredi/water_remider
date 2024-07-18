@@ -248,13 +248,13 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "water_app",
+      "name": "hydrate_me",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-07-15T19:18:44.086813Z",
+  "generated": "2024-07-18T17:48:40.014805Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///Users/andressa/flutter",

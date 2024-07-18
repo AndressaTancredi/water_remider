@@ -1,4 +1,4 @@
-# water_app
+# hydrate_me
 
 A new Flutter project.
 
